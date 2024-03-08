@@ -57,7 +57,7 @@ def main():
             st.write('#### ↖️ You can select how to upload the image from the sidebar.')
     else:
         img_file = st.sidebar.radio(
-            'Please elect a sample image. (Free to use under the Unsplash License)',
+            'Please select a sample image.',
             ('Sample 1', 'Sample 2', 'Sample 3', 'Sample 4', 'Sample 5', 'Sample 6')
         )
 
@@ -99,7 +99,7 @@ def main():
 
     st.sidebar.divider()
 
-    st.sidebar.caption('This app is powered by PyTorch and Hugging Face 🤗.  \n \
+    st.sidebar.caption('This app is powered by Hugging Face 🤗 and Streamlit.  \n \
                         The model was fine-tuned on [FER2013 dataset](https://paperswithcode.com/dataset/fer2013). \
                         The fine-tuned model weights are available on [Hugging Face Model Hub](https://huggingface.co/yosshstd/vit-fer2013).  \n \
                         The sample images are free to use under the [Unsplash License](https://unsplash.com/license).  \n \
