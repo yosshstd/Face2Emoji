@@ -48,9 +48,13 @@ def main():
     
     if img_source == 'Upload the image':
         img_file = st.sidebar.file_uploader('Please upload the facial expression image.', type=['jpg', 'png', 'jpeg'])
-        st.write('#### ↖️ You can select how to upload the image from the sidebar.')
+        if img_file is None:
+            st.write('#### ↖️ You can select how to upload the image from the sidebar.')
+
     elif img_source == 'Capture the image':
         img_file = st.sidebar.camera_input('Please capture the facial expression image.')
+        if img_file is None:
+            st.write('#### ↖️ You can select how to upload the image from the sidebar.')
     else:
         img_file = st.sidebar.radio(
             'Please elect a sample image. (Free to use under the Unsplash License)',

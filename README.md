@@ -1,5 +1,6 @@
 # Face2Emoji
 
+- [Face2Emoji](https://face2emoji.streamlit.app/)
 - The model is trained on the FER2013 dataset which consists of 48x48 pixel grayscale images of faces (approximately 30,000 images, with 7 emotions).
 - The model is able to predict the relevant emoji for the given facial expression in the image.
 
