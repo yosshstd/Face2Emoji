@@ -48,8 +48,9 @@ def main():
     
     if img_source == 'Upload the image':
         img_file = st.sidebar.file_uploader('Please upload the facial expression image.', type=['jpg', 'png', 'jpeg'])
+        st.write('#### ↖️ You can select how to upload the image from the sidebar.')
     elif img_source == 'Capture the image':
-        img_file = st.camera_input('Please capture the facial expression image.')
+        img_file = st.sidebar.camera_input('Please capture the facial expression image.')
     else:
         img_file = st.sidebar.radio(
             'Please elect a sample image. (Free to use under the Unsplash License)',
@@ -77,7 +78,6 @@ def main():
         with st.spinner('loading・・・'):
             img = Image.open(img_file)
             st.image(img, caption='Facial expression image', use_column_width=True)
-            st.divider()
 
             results = predict(img, model)
             st.subheader('Probs of each emoji:')
