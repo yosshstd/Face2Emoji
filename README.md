@@ -29,11 +29,11 @@ The model is [Vision Transformer (ViT)](https://huggingface.co/google/vit-base-p
 The pre-trained model from 🤗 Hugging Face can be fine-tuned on the FER2013 dataset using Low-Rank Adaption (LoRA).  
 LoRA is a technique that fine-tunes a pre-trained model by adding a small trainable weight matrix, while keeping the original model weights frozen.
 
-Comparison of each model's performance is shown below:
+Comparison of each method's performance is shown below:
 | Method | Trainable Params | VRAM | Batch Size | Epoch | val_acc | lr | 
 | ---- | ---- | ---- | ---- | ---- | ---- | ---- | 
 | LoRA | 1.3 M (1.52 %) | 1.5 GB | 16 | 9 epochs | 71.22 % | 1e-3 | 
-| FT | 85.8 M (100 %) | 4 GB | 16 | 6 epochs | 71.89% | 2e-5 |
+| FT (Normal Fine-tuning) | 85.8 M (100 %) | 4 GB | 16 | 6 epochs | 71.89% | 2e-5 |
 
 In conclusion, the LoRA method utilizes 1/3 of the VRAM compared to the FT method. Although it exhibits slightly lower validation accuracy, it represents a favorable trade-off between the number of parameters and validation accuracy.
 
@@ -57,3 +57,11 @@ You can download the fine-tuned model (FT) [here](https://huggingface.co/yosshst
 - The plot shows that the embeddings of the images annotated with the same emotion are clustered together, which indicates that the model has learned to represent the emotions in a meaningful way.
 
 ![umap](image/emotion_feature_space.png)
+
+## 📝 Refferences
+- [Vision Transformer (ViT)](https://arxiv.org/abs/2010.11929)
+- [Low-Rank Adaption (LoRA)](https://arxiv.org/abs/2106.09685)
+- [FER2013 dataset](https://paperswithcode.com/dataset/fer2013)
+- [Hugging Face](https://huggingface.co/)
+- [Streamlit](https://streamlit.io/)
+- [UMAP](https://arxiv.org/abs/1802.03426)
