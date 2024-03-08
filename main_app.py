@@ -38,8 +38,9 @@ def main():
     # load model with cpu
     model = ViTForImageClassification.from_pretrained('yosshstd/vit-fer2013', device_map='cpu')
     
-    st.title('Face2Emoji App')
-    st.sidebar.write('# Face2Emoji App')
+    st.markdown(f'<h1 style="text-align:center;">Face2Emoji App</h1>', unsafe_allow_html=True)
+    st.write('')
+    st.sidebar.write('<h1 style="text-align:center;">Face2Emoji App</h1>', unsafe_allow_html=True)
     st.sidebar.write('')
 
     img_source = st.sidebar.radio('Please select the source of the facial expression image.',
@@ -76,34 +77,29 @@ def main():
         with st.spinner('loading・・・'):
             img = Image.open(img_file)
             st.image(img, caption='Facial expression image', use_column_width=True)
-            st.write('')
+            st.divider()
 
             results = predict(img, model)
-
-            st.subheader('Probs of each emotion:')
+            st.subheader('Probs of each emoji:')
 
             # Display bar chart
             st.bar_chart(data=results)
 
             # Display emotion
             emotion = results.idxmax()[0]
-            st.write('This image is classified as:')
+            st.subheader('Predicted emoji:')
 
             # Display Big Emoji
-            st.write(f'## {emotion}')
-            
+            st.markdown(f'<h1 style="text-align:center;">{emotion}</h1>', unsafe_allow_html=True)
 
 
-    st.sidebar.write('')
-    st.sidebar.write('')
-    st.sidebar.write('')
-    st.sidebar.write('')
+    st.sidebar.divider()
 
-    github = 'https://github.com/yosshstd/Face2Emoji'
     st.sidebar.caption('This app is powered by PyTorch and Hugging Face 🤗.  \n \
-                        The model was fine-tuned on FER2013 dataset.  \n \
-                        The sample images are free to use under the Unsplash License.  \n \
-                        The source code is available on [GitHub](%s).' % github)
+                        The model was fine-tuned on [FER2013 dataset](https://paperswithcode.com/dataset/fer2013). \
+                        The fine-tuned model weights are available on [Hugging Face Model Hub](https://huggingface.co/yosshstd/vit-fer2013).  \n \
+                        The sample images are free to use under the [Unsplash License](https://unsplash.com/license).  \n \
+                        The source code is available on [GitHub](https://github.com/yosshstd/Face2Emoji).')
 
 
 if __name__ == '__main__':
