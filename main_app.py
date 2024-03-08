@@ -1,3 +1,4 @@
+import time
 import streamlit as st
 import pandas as pd
 import torch
@@ -80,10 +81,12 @@ def main():
 
     if img_file is not None:
         with st.spinner('loading・・・'):
+            start_time = time.time()
             img = Image.open(img_file)
             st.image(img, caption='Facial expression image', use_column_width=True)
 
             results = predict(img, model)
+            st.success(f'Elapsed time: {time.time() - start_time:.2f} [sec]')
             st.subheader('Probs of each emoji:')
 
             # Display bar chart
