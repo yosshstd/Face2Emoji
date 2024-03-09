@@ -1,6 +1,7 @@
+[![Open in Streamlit](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://face2emoji.streamlit.app/)
+
 # Face2Emoji
 
-- [Face2Emoji App](https://face2emoji.streamlit.app/)
 - The model is trained on the FER2013 dataset which consists of 48x48 pixel grayscale images of faces (approximately 30,000 images, with 7 emotions).
 - The model is able to predict the relevant emoji for the given facial expression in the image.
 
@@ -35,7 +36,7 @@ Comparison of each method's performance is shown below:
 | LoRA | 1.3 M (1.52 %) | 1.5 GB | 16 | 9 epochs | 71.22 % | 1e-3 | 
 | FT (Normal Fine-tuning) | 85.8 M (100 %) | 4 GB | 16 | 6 epochs | 71.89% | 2e-5 |
 
-In conclusion, the LoRA method utilizes 1/3 of the VRAM compared to the FT method. Although it exhibits slightly lower validation accuracy, it represents a favorable trade-off between the number of parameters and validation accuracy.
+In summary, the LoRA method utilizes 1/3 of the VRAM compared to the FT method. Although it exhibits slightly lower validation accuracy, it represents a favorable trade-off between the number of parameters and validation accuracy.
 
 You can download the fine-tuned model (FT) [here](https://huggingface.co/yosshstd/vit-fer2013) and the LoRA adapter [here](https://huggingface.co/yosshstd/vit-lora-fer2013).
 
@@ -44,19 +45,24 @@ You can download the fine-tuned model (FT) [here](https://huggingface.co/yosshst
 
 ### Input: Image of a face
 
-![smile](image/smile.png)
+<p align="center">
+  <img src="image/smile.png" alt="probs">
+</p>
 
 ### Output: Probs of each emotion
 
-![probs](image/probs.png)
-
+<p align="center">
+  <img src="image/probs.png" alt="probs">
+</p>
 
 ## 🗺️ Emotion feature space visualization
 
-- The ViT embeddings of the images in the FER2013 dataset are dimensionally reduced to 2D using UMAP and visualized in a scatter plot. 
+- The ViT embeddings of the test images in the FER2013 dataset are dimensionally reduced to 2D using UMAP and visualized in a scatter plot. 
 - The plot shows that the embeddings of the images annotated with the same emotion are clustered together, which indicates that the model has learned to represent the emotions in a meaningful way.
 
-![umap](image/emotion_feature_space.png)
+<p align="center">
+  <img src="image/emotion_feature_space.png" alt="probs">
+</p>
 
 ## 📝 Refferences
 - [Vision Transformer (ViT)](https://arxiv.org/abs/2010.11929)

@@ -103,7 +103,7 @@ def main():
     st.sidebar.divider()
 
     st.sidebar.caption('This app is powered by Hugging Face 🤗 and Streamlit.  \n \
-                        The model was fine-tuned on [FER2013 dataset](https://paperswithcode.com/dataset/fer2013). \
+                        The ViT model was fine-tuned on [FER2013 dataset](https://paperswithcode.com/dataset/fer2013). \
                         The fine-tuned model weights are available on [Hugging Face Model Hub](https://huggingface.co/yosshstd/vit-fer2013).  \n \
                         The sample images are free to use under the [Unsplash License](https://unsplash.com/license).  \n \
                         The source code is available on [GitHub](https://github.com/yosshstd/Face2Emoji).')
