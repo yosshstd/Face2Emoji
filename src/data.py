@@ -8,7 +8,7 @@ from PIL import Image
 from torch.utils.data import Dataset
 from torch.utils.data import DataLoader
 
-DATA_PATH = '../dataset/fer2013.csv'
+DATA_PATH = './dataset/fer2013.csv'
 
 
 class CustomDataset(Dataset):

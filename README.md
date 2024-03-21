@@ -10,6 +10,7 @@ To install the required packages, run the following command:
 ```bash
 pip install -r requirements.txt
 ```
+aa
 
 ## 📚 Dataset
 Dataset used for training the model is [FER2013 dataset](https://huggingface.co/spaces/mxz/emtion/blob/c697775e0adc35a9cec32bd4d3484b5f5a263748/fer2013.csv). The dataset contains approx. 30,000 images that are each annotated with one of 7 emotions (0=Angry, 1=Disgust, 2=Fear, 3=Happy, 4=Sad, 5=Surprise, 6=Neutral).
@@ -22,7 +23,7 @@ root
 ```
 You can download the dataset using the following command:
 ```bash
-wget -P ./dataset https://huggingface.co/spaces/mxz/emtion/blob/c697775e0adc35a9cec32bd4d3484b5f5a263748/fer2013.csv
+wget -P ./dataset https://huggingface.co/spaces/mxz/emtion/resolve/c697775e0adc35a9cec32bd4d3484b5f5a263748/fer2013.csv
 ```
 
 ## 🤖 Model & Fine-tuning
