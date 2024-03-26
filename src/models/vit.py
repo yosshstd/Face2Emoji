@@ -1,6 +1,6 @@
 import torch
-import timm
-from transformers import ViTModel, ViTForImageClassification
+#import timm
+from transformers import ViTModel, ViTForImageClassification, CLIPVisionModelWithProjection
 from torch import nn
 from peft import LoraConfig, get_peft_model
 
@@ -9,7 +9,10 @@ class ViT(nn.Module):
     def __init__(self, model_name: str, trainable: bool = False, num_classes: int = 7, lora: bool = False) -> None:
         super().__init__()
 
-        self.model = ViTForImageClassification.from_pretrained(model_name, num_labels=num_classes)
+        #self.model = ViTForImageClassification.from_pretrained(model_name, num_labels=num_classes)
+        self.model = CLIPVisionModelWithProjection.from_pretrained(model_name)
+        self.model.init_weights()
+        self.head = nn.Linear(self.model.config.hidden_size, num_classes)
         #self.model =  timm.create_model(model_name, pretrained=True, num_classes=0)
         
         self.dropout = nn.Dropout(0.1)
@@ -23,8 +26,7 @@ class ViT(nn.Module):
             config = LoraConfig(
                 r=8,
                 lora_alpha=32,
-                target_modules=["query", "value", "key", "dense"],
-                #target_modules=['qkv'],
+                target_modules=['q_proj', 'v_proj'],
                 lora_dropout=0.1,
                 bias="none"
             )
@@ -33,7 +35,9 @@ class ViT(nn.Module):
         print_trainable_parameters(self.model) 
 
     def forward(self, x):
-        return self.model(x).logits
+        x = self.model(x)
+        logits = self.head(x.image_embeds)
+        return logits
 
 
 

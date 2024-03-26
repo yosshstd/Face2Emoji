@@ -7,14 +7,14 @@ from .models.vit import ViT
 
 
 class BaseModel(pl.LightningModule):
-    def __init__(self, model_name='google/vit-base-patch16-224-in21k', trainable=True, num_classes=7, lora=False, lr=1e-3, weight_decay=0.0, optimizer='Adam'):
+    def __init__(self, config):
         super().__init__()
         self.save_hyperparameters()
-        self.model = ViT(model_name, trainable, num_classes, lora)
+        self.model = ViT(**config.model)
 
-        self.optimizer = optimizer
-        self.lr = lr
-        self.weight_decay = weight_decay
+        self.optimizer = config.train.optimizer
+        self.lr = config.train.lr
+        self.weight_decay = config.train.weight_decay
         self.test_outputs = {'y_true': [], 'y_pred': []}
     
     def forward(self, x):

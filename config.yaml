@@ -1,0 +1,17 @@
+train:
+  epochs: 20
+  patience: 3
+  optimizer: Adam
+  lr: 2.0e-05
+  weight_decay: 0.0
+
+data:
+  data_path: ./dataset/fer2013.csv
+  batch_size: 64
+  augment: True
+
+model:
+  model_name: wkcn/TinyCLIP-ViT-39M-16-Text-19M-YFCC15M
+  num_classes: 7
+  lora: True
+  trainable: False

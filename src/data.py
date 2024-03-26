@@ -57,9 +57,9 @@ def prepare_data(data):
     return image_array, image_label
 
 
-def get_dataloaders(path=DATA_PATH, bs=64, augment=True):
+def get_dataloaders(data_path=DATA_PATH, batch_size=64, augment=True):
 
-    fer2013, emotion_mapping = load_data(path)
+    fer2013, emotion_mapping = load_data(data_path)
 
     xtrain, ytrain = prepare_data(fer2013[fer2013['Usage'] == 'Training'])
     xval, yval = prepare_data(fer2013[fer2013['Usage'] == 'PrivateTest'])
@@ -95,8 +95,8 @@ def get_dataloaders(path=DATA_PATH, bs=64, augment=True):
     val = CustomDataset(xval, yval, test_transform)
     test = CustomDataset(xtest, ytest, test_transform)
 
-    train_loader = DataLoader(train, batch_size=bs, shuffle=True)
-    val_loader = DataLoader(val, batch_size=bs, shuffle=False)
-    test_loader = DataLoader(test, batch_size=bs, shuffle=False)
+    train_loader = DataLoader(train, batch_size=batch_size, shuffle=True)
+    val_loader = DataLoader(val, batch_size=batch_size, shuffle=False)
+    test_loader = DataLoader(test, batch_size=batch_size, shuffle=False)
 
     return train_loader, val_loader, test_loader, emotion_mapping
