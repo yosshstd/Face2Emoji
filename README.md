@@ -1,6 +1,7 @@
-[![Open in Streamlit](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://face2emoji.streamlit.app/)
 
-# Face2Emoji
+
+# Face2Emoji 
+[![Open in Streamlit](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://face2emoji.streamlit.app/)
 
 - The model is trained on the FER2013 dataset which consists of 48x48 pixel grayscale images of faces (approximately 30,000 images, with 7 emotions).
 - The model is able to predict the relevant emoji for the given facial expression in the image.
@@ -12,7 +13,7 @@ pip install -r requirements.txt
 ```
 
 ## 📚 Dataset
-Dataset used for training the model is [FER2013 dataset](https://huggingface.co/spaces/mxz/emtion/blob/c697775e0adc35a9cec32bd4d3484b5f5a263748/fer2013.csv). The dataset contains approx. 30,000 images that are each annotated with one of 7 emotions (0=Angry, 1=Disgust, 2=Fear, 3=Happy, 4=Sad, 5=Surprise, 6=Neutral).
+Dataset used for training the model is FER2013 dataset. The dataset contains approx. 30,000 images that are each annotated with one of 7 emotions (0=Angry, 1=Disgust, 2=Fear, 3=Happy, 4=Sad, 5=Surprise, 6=Neutral).  
 Training pipeline expects the dataset to be in the following structure:
 ```bash
 root
@@ -20,10 +21,11 @@ root
         └── fer2013.csv
         
 ```
-You can download the dataset using the following command:
+You can download the dataset from the following link:
 ```bash
 wget -P ./dataset https://huggingface.co/spaces/mxz/emtion/resolve/c697775e0adc35a9cec32bd4d3484b5f5a263748/fer2013.csv
 ```
+
 
 ## 🤖 Model & Fine-tuning
 The model is [Vision Transformer (ViT)](https://huggingface.co/google/vit-base-patch16-224-in21k) which is a transformer model that performs very well on image classification tasks.  

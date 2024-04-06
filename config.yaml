@@ -1,17 +1,18 @@
 train:
   epochs: 20
-  patience: 3
+  patience: 4
   optimizer: Adam
-  lr: 2.0e-05
+  vit_lr: 2.0e-05
+  head_lr: 1.0e-03
   weight_decay: 0.0
 
 data:
   data_path: ./dataset/fer2013.csv
-  batch_size: 64
+  batch_size: 16
   augment: True
 
 model:
-  model_name: wkcn/TinyCLIP-ViT-39M-16-Text-19M-YFCC15M
+  model_name: google/vit-base-patch16-224-in21k
   num_classes: 7
-  lora: True
-  trainable: False
+  lora: False
+  trainable: True

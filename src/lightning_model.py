@@ -10,10 +10,12 @@ class BaseModel(pl.LightningModule):
     def __init__(self, config):
         super().__init__()
         self.save_hyperparameters()
+        self.config = config
         self.model = ViT(**config.model)
 
         self.optimizer = config.train.optimizer
-        self.lr = config.train.lr
+        self.vit_lr = config.train.vit_lr
+        self.head_lr = config.train.head_lr
         self.weight_decay = config.train.weight_decay
         self.test_outputs = {'y_true': [], 'y_pred': []}
     
@@ -21,10 +23,15 @@ class BaseModel(pl.LightningModule):
         return self.model(x)
 
     def configure_optimizers(self):
+        parameters = [
+            {'params': self.model.vit.parameters(), 'lr': self.vit_lr},
+            {'params': self.model.head.parameters(), 'lr': self.head_lr}
+        ]
+
         if self.optimizer == 'Adam':
-            opt = torch.optim.Adam(self.parameters(), lr=self.lr, weight_decay=self.weight_decay)
+            opt = torch.optim.Adam(parameters, weight_decay=self.weight_decay)
         elif self.optimizer == 'AdamW':
-            opt = torch.optim.AdamW(self.parameters(), lr=self.lr, weight_decay=self.weight_decay)
+            opt = torch.optim.AdamW(parameters, weight_decay=self.weight_decay)
         else:
             raise ValueError(f'Invalid optimizer: {self.optimizer}')
         
